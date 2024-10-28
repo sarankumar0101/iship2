@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word to PDF Converter</title>
+    <link rel="stylesheet" href="../static/word-pdf.css"> <!-- Link to the CSS file -->
+</head>
+<body>
+
+<div class="container">
+    <h2>Convert Word to PDF</h2>
+    <input type="file" id="fileInput" accept=".docx">
+    <button onclick="convertToPDF()">Convert to PDF</button>
+    <div id="loading" class="loading" style="display: none;">Converting... Please wait.</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="script.js"></script> <!-- Link to the JavaScript file -->
+</body>
+</html>

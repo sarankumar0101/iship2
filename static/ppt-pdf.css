@@ -1,0 +1,110 @@
+/* main.css */
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+/* Navigation Bar Styles */
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
+
+.nav-bar .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Main Container to Center Content */
+.main-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* PPT to PDF Section */
+.ppt-to-pdf-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 90%;
+}
+
+.ppt-to-pdf-content h1 {
+    font-size: 2rem;
+    color: #4a90e2;
+    margin-bottom: 20px;
+}
+
+.ppt-to-pdf-content input[type="file"] {
+    margin-bottom: 20px;
+    padding: 8px;
+    border: 2px solid #4a90e2;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.ppt-to-pdf-content button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.ppt-to-pdf-content button:hover {
+    background-color: #357ab7;
+}
+
+/* Download Link */
+#downloadLink {
+    margin-top: 20px;
+}
+
+#downloadLink a {
+    text-decoration: none;
+    color: #4a90e2;
+}
+
+#downloadLink a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .ppt-to-pdf-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .ppt-to-pdf-content button {
+        width: 100%;
+        padding: 15px;
+    }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Text Converter</title>
+    <link rel="stylesheet" href="../static/image-text.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="nav-bar">
+            <div class="logo">AI Conversa</div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/services">Services</a>
+            </div>
+        </div>
+        <h1>Image to Text Converter</h1>
+    </header>
+
+    <main class="container">
+        <!-- File upload form with draggable area -->
+        <form id="uploadForm" enctype="multipart/form-data">
+            <div id="dropArea" class="drop-area">
+                <p>Drag & drop an image here, or click to select</p>
+                <input type="file" id="imageFile" name="file" accept="image/*" hidden>
+            </div>
+            <button type="submit">Convert to Text</button>
+        </form>
+        
+        <!-- Result display area -->
+        <div id="result">
+            <div id="uploadedImage"></div>
+            <div id="extractedText"></div>
+        </div>
+    </main>
+
+    <script>
+        const dropArea = document.getElementById('dropArea');
+        const fileInput = document.getElementById('imageFile');
+        const form = document.getElementById('uploadForm');
+        const resultDiv = document.getElementById('result');
+        const uploadedImage = document.getElementById('uploadedImage');
+        const extractedText = document.getElementById('extractedText');
+
+        // Show file select on click
+        dropArea.addEventListener('click', () => fileInput.click());
+
+        // Handle file drag-and-drop
+        dropArea.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            dropArea.classList.add('active');
+        });
+
+        dropArea.addEventListener('dragleave', () => dropArea.classList.remove('active'));
+
+        dropArea.addEventListener('drop', (event) => {
+            event.preventDefault();
+            dropArea.classList.remove('active');
+            const files = event.dataTransfer.files;
+            if (files.length) {
+                fileInput.files = files;
+                uploadImage();
+            }
+        });
+
+        // Handle form submission
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            uploadImage();
+        });
+
+        function uploadImage() {
+            const file = fileInput.files[0];
+            if (!file) return;
+            
+            const formData = new FormData();
+            formData.append('file', file);
+
+            // Display uploaded image preview
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(file);
+            img.alt = 'Uploaded Image';
+            img.style.maxWidth = '100%';
+            uploadedImage.innerHTML = ''; // Clear previous image
+            uploadedImage.appendChild(img);
+
+            // AJAX request to upload and extract text
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.text) {
+                    extractedText.innerHTML = `<h2>Extracted Text:</h2><p>${data.text}</p>`;
+                } else if (data.error) {
+                    extractedText.innerHTML = `<h2>Error:</h2><p>${data.error}</p>`;
+                }
+            })
+            .catch(error => {
+                extractedText.innerHTML = `<h2>Error:</h2><p>${error}</p>`;
+            });
+        }
+    </script>
+</body>
+</html>

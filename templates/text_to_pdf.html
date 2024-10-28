@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to PDF - AI Conversa</title>
+    <link rel="stylesheet" href="../static/TexttoPdf.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="nav-bar">
+            <div class="logo">AI Conversa</div>
+            <div class="auth-links">
+                <a href="/">Home</a>
+                <a href="/services">Services</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Text to PDF Section -->
+    <section class="text-to-pdf-content">
+        <div class="input-section">
+            <h1>Text to PDF Converter</h1>
+            <textarea id="textInput" rows="10" placeholder="Enter your text here..."></textarea>
+            <button id="generatePdf">Preview PDF</button>
+        </div>
+        <div id="pdfPreviewContainer" style="display: none;">
+            <h2>PDF Preview</h2>
+            <iframe id="pdfPreview" style="width: 100%; height: 400px;" frameborder="0"></iframe>
+            <button id="downloadPdf" style="margin-top: 20px; display: none;">Download PDF</button>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('generatePdf').addEventListener('click', function() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const text = document.getElementById('textInput').value;
+
+            // Add text to the PDF
+            const margins = { top: 10, left: 10, bottom: 10 };
+            const pageHeight = doc.internal.pageSize.height;
+
+            let y = margins.top;
+            const lines = doc.splitTextToSize(text, 190); // Wrap text to fit within the page
+            lines.forEach((line) => {
+                if (y + 10 > pageHeight - margins.bottom) {
+                    doc.addPage();
+                    y = margins.top; // Reset y to top of new page
+                }
+                doc.text(line, margins.left, y);
+                y += 10; // Increment y position for the next line
+            });
+
+            // Convert PDF to data URL for preview
+            const pdfOutput = doc.output('datauristring');
+            const pdfPreview = document.getElementById('pdfPreview');
+            pdfPreview.src = pdfOutput;
+
+            // Show PDF preview container
+            document.getElementById('pdfPreviewContainer').style.display = 'block';
+
+            // Show download button
+            document.getElementById('downloadPdf').style.display = 'inline-block';
+            document.getElementById('downloadPdf').onclick = function() {
+                doc.save('converted.pdf');
+            };
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPT to PDF - AI Conversa</title>
+    <link rel="stylesheet" href="../static/ppt-pdf.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="nav-bar">
+            <div class="logo">AI Conversa</div>
+        </div>
+    </header>
+
+    <!-- PPT to PDF Section -->
+    <main class="main-container">
+        <section class="ppt-to-pdf-content">
+            <h1>Convert PPT Presentation to PDF</h1>
+            <form id="uploadForm">
+                <input type="file" id="fileInput" accept=".ppt,.pptx" required>
+                <button type="submit">Convert to PDF</button>
+            </form>
+            <div id="downloadLink" style="display:none;">
+                <a href="#" id="pdfDownload" download="converted.pdf">Download PDF</a>
+            </div>
+            <div id="message" style="display:none;"></div>
+            <div id="spinner" style="display:none;">Converting...</div>
+        </section>
+    </main>
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        const fileInput = document.getElementById('fileInput');
+        const downloadLink = document.getElementById('downloadLink');
+        const pdfDownload = document.getElementById('pdfDownload');
+        const message = document.getElementById('message');
+        const spinner = document.getElementById('spinner');
+
+        form.onsubmit = (event) => {
+            event.preventDefault();
+            const file = fileInput.files[0];
+
+            if (file) {
+                message.innerText = "Conversion started...";
+                message.style.display = 'block';
+                spinner.style.display = 'block';
+
+                // Simulate PDF creation asynchronously
+                simulateConversion(file).then((pdfBlob) => {
+                    // Create a URL for the PDF blob
+                    const url = URL.createObjectURL(pdfBlob);
+                    pdfDownload.href = url;
+                    downloadLink.style.display = 'block';
+                    spinner.style.display = 'none';
+                    message.innerText = "Conversion complete! You can download your PDF now.";
+                });
+            }
+        };
+
+        function simulateConversion(file) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    const pdf = new jsPDF();
+                    pdf.text('This PDF is generated from a PPT file. (Actual content extraction is not implemented)', 10, 10);
+                    const pdfBlob = pdf.output('blob');
+                    resolve(pdfBlob);
+                }, 500); // Simulated processing time
+            });
+        }
+    </script>
+</body>
+</html>

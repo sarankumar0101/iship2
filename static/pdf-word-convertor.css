@@ -1,0 +1,99 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+/* Navigation Bar Styles */
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
+
+.nav-bar .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.auth-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 16px;
+}
+
+.auth-links a:hover {
+    color: #f0a500;
+}
+
+/* PDF to Word Section */
+.pdf-to-word-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center elements vertically within this section */
+    align-items: center;     /* Center elements horizontally within this section */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;      /* Center horizontally and add space around */
+    max-width: 500px;       /* Maximum width of content */
+    width: 90%;              /* Responsive width */
+}
+
+.pdf-to-word-content h1 {
+    font-size: 2rem;
+    color: #4a90e2;
+    margin-bottom: 20px;
+    text-align: center;      /* Center text */
+}
+
+.pdf-to-word-content input[type="file"] {
+    margin-bottom: 20px;
+    padding: 8px;
+    border: 2px solid #4a90e2;
+    border-radius: 4px;
+    width: 100%;            /* Full width of input */
+    max-width: 300px;      /* Maximum width of input */
+}
+
+.pdf-to-word-content button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pdf-to-word-content button:hover {
+    background-color: #357ab7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pdf-to-word-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .pdf-to-word-content button {
+        width: 100%;
+        padding: 15px;
+    }
+}

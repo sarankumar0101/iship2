@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - AI Conversa</title>
+    <link rel="stylesheet" href="../static/signin.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="nav-bar">
+            <div class="auth-links">
+                <a href="/">Home</a>
+                <a href="/signup">Sign Up</a>
+            </div>
+            <div class="logo">AI Conversa</div>
+        </div>
+    </header>
+
+    <!-- Sign In Form Section -->
+    <section class="signin-content">
+        <div class="form-container">
+            <h1>Sign In to Your Account</h1>
+            <form id="signinForm">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn">Sign In</button>
+            </form>
+            <p><a href="./forgot-password.html">Forgot Password?</a></p>
+            <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+        </div>
+    </section>
+
+    <!-- JavaScript for Redirection -->
+    <script>
+        document.getElementById('signinForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            // You can add form validation or login authentication here
+
+            // After validation, redirect to the services page
+            window.location.href = '/services'; // Redirects to the services page route in Flask
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Conversa</title>
+    <link rel="stylesheet" href="../static/main.css"> <!-- Link to the external CSS file -->
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="nav-bar">
+            <div class="logo">AI Conversa</div>
+            <div class="auth-links">
+                <a href="/signin">Sign In</a>
+                <a href="/signup">Sign Up</a>
+                <a href="/contact">Contact Us</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <section class="main-content">
+        <div class="overlay">
+            <h1>AI Conversa</h1>
+        </div>
+    </section>
+
+    <script>
+        // Create a div to hold the neon effect
+        const effectContainer = document.createElement('div');
+        effectContainer.style.position = 'absolute';
+        effectContainer.style.pointerEvents = 'none'; // Ignore mouse events
+        effectContainer.style.width = '100%';
+        effectContainer.style.height = '100%';
+        document.body.appendChild(effectContainer);
+
+        // Function to create the neon effect
+        function createNeonEffect(x, y) {
+            const neonEffect = document.createElement('div');
+            neonEffect.style.position = 'absolute';
+            neonEffect.style.backgroundColor = 'rgba(255, 255, 255, 0.8)'; // Bright white color for neon effect
+            neonEffect.style.width = '10px'; // Diameter of the neon effect
+            neonEffect.style.height = '10px'; // Diameter of the neon effect
+            neonEffect.style.borderRadius = '50%'; // Make it circular
+            neonEffect.style.pointerEvents = 'none'; // Ignore mouse events
+            neonEffect.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6)'; // Neon effect
+            neonEffect.style.transition = 'opacity 0.2s ease'; // Fade effect
+            neonEffect.style.opacity = '1';
+            neonEffect.style.transform = 'translate(-50%, -50%)'; // Center the effect at the cursor
+
+            // Set the position of the neon effect at the cursor
+            neonEffect.style.left = `${x}px`;
+            neonEffect.style.top = `${y}px`;
+
+            effectContainer.appendChild(neonEffect);
+
+            // Fade out after 0.2 seconds
+            setTimeout(() => {
+                neonEffect.style.opacity = '0';
+                setTimeout(() => {
+                    neonEffect.remove();
+                }, 200); // Wait for fade out
+            }, 0); // Show immediately
+        }
+
+        // Event listener for mouse movement
+        window.addEventListener('mousemove', (event) => {
+            createNeonEffect(event.clientX, event.clientY); // Create neon effect at cursor position
+        });
+    </script>
+</body>
+</html>

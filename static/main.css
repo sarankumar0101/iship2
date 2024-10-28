@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden; /* Prevent scrollbars */
+}
+
+/* Navigation Bar Styles */
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #222; /* Darker background for the navbar */
+    color: white;
+}
+
+.nav-bar .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.auth-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 16px;
+}
+
+.auth-links a:hover {
+    color: #f0a500;
+}
+
+/* Main Content Section */
+.main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Position relative for overlay */
+    background-color: black; /* Black background color */
+}
+
+/* Overlay Styles */
+.overlay {
+    position: relative; /* Position relative for overlay text */
+    text-align: center;
+}
+
+.overlay h1 {
+    color: #5fdede; /* Light color for text */
+    font-size: 50px;
+    font-weight: bold;
+    text-shadow: 
+        0 0 5px rgba(0, 0, 0, 0.7),
+        0 0 10px rgba(255, 255, 255, 0.5),
+        0 0 15px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.2); /* Neon glow effect */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .overlay h1 {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    .overlay h1 {
+        font-size: 28px;
+    }
+}

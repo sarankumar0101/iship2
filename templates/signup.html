@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - AI Conversa</title>
+    <link rel="stylesheet" href="../static/signup.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="nav-bar">
+            <div class="auth-links">
+                <a href="/">Home</a>
+                <a href="/signin">Sign In</a>
+            </div>
+            <div class="logo">AI Conversa</div>
+        </div>
+    </header>
+
+    <!-- Sign Up Form Section -->
+    <section class="signup-content">
+        <div class="form-container">
+            <h1>Create an Account</h1>
+            <form id="signupForm" action="#" method="post" onsubmit="return validateForm()">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <small id="emailWarning" class="warning"></small>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <small id="passwordRequirements" class="warning"></small>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                    <small id="confirmPasswordWarning" class="warning"></small>
+                </div>
+                <button type="submit" class="btn">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="../index/signin.html">Sign In</a></p>
+        </div>
+    </section>
+
+    <script src="../javascript/signup.js"></script>
+</body>
+</html>
